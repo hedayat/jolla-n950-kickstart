@@ -18,19 +18,16 @@ user --name nemo --groups audio,video,privileged --password nemo
 #repo --name=nemo-mw   --baseurl=http://repo.merproject.org/obs/nemo:/devel:/mw/latest_armv7hl/ 
 #repo --name=mer-qt    --baseurl=http://repo.merproject.org/obs/mer:/qt:/devel/latest_armv7hl/
 
-repo --name=nemo-adaptation-n950-n9-testing --baseurl=http://repo.merproject.org/obs/nemo:/testing:/hw:/ti:/omap3:/n950-n9/latest_armv7hl --includepkgs=linux-firmware-ti-connectivity
 repo --name=nemo-adaptation-n950-n9         --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n950-n9/latest_armv7hl/ 
 repo --name=nemo-adaptation-n9xx-common     --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/latest_armv7hl/ 
 repo --name=filippz                         --baseurl=http://repo.merproject.org/obs/home:/filippz/latest_armv7hl/
-repo --name=filippz-devel                   --baseurl=http://repo.merproject.org/obs/home:/filippz:/devel/latest_armv7hl/
 
-
-repo --name=jolla                    --baseurl=http://releases.jolla.com/releases/1.0.8.21/jolla/armv7hl/
-repo --name=hotfixes                 --baseurl=http://releases.jolla.com/releases/1.0.8.21/hotfixes/armv7hl/
-repo --name=apps                     --baseurl=http://releases.jolla.com/jolla-apps/1.0.8.21/armv7hl/
-#repo --name=limited-nemo-mw          --baseurl=http://repo.merproject.org/obs/home:/vgrade:/branches:/nemo:/devel:/mw/latest_armv7hl/
+repo --name=jolla                    --baseurl=http://releases.jolla.com/releases/1.1.0.39/jolla/armv7hl/
+repo --name=hotfixes                 --baseurl=http://releases.jolla.com/releases/1.1.0.39/hotfixes/armv7hl/
+repo --name=apps                     --baseurl=http://releases.jolla.com/jolla-apps/1.1.0.39/armv7hl/
+repo --name=limited-nemo-mw          --baseurl=http://repo.merproject.org/obs/home:/vgrade:/branches:/nemo:/devel:/mw/latest_armv7hl/
 repo --name=jalnmwr                  --baseurl=http://repo.merproject.org/obs/home:/SourenAraya:/branches:/nemo:/devel:/mw/latest_armv7hl/
-#repo --name=bme-patched-service-unit --baseurl=http://repo.merproject.org/obs/home:/SourenAraya:/branches:/nemo:/devel:/hw:/ti:/omap3:/n950-n9/latest_armv7hl/ --includepkgs=bme-rm-680-bin
+repo --name=bme-patched-service-unit --baseurl=http://repo.merproject.org/obs/home:/SourenAraya:/branches:/nemo:/devel:/hw:/ti:/omap3:/n950-n9/latest_armv7hl/ --includepkgs=bme-rm-680-bin
 repo --name=mer                      --baseurl=http://repo.merproject.org/obs/home:/vgrade:/branches:/mer-core:/devel/latest_armv7hl/
 
 %packages
@@ -189,7 +186,7 @@ sailfish-office
         pulseaudio-settings-n950
         #systemd-console-ttyS0
         ti-omap3-sgx
-        #ti-omap3-sgx-wayland-wsegl
+        ti-omap3-sgx-wayland-wsegl
         #ti-wl1271-firmware
 	ti-wl1273-bt-firmware
         ti-wl1273-fm-radio-firmware
@@ -299,9 +296,8 @@ sed -i 's/ExecStart=.*/ExecStart=\/usr\/sbin\/fbset-N9/' /lib/systemd/system/fbs
 # It's not set by default but needs to be set on N9
 cat > /usr/sbin/screen_rotation_angle-N9 << EOF
 #!/bin/sh
-dconf write /desktop/jolla/components/screen_rotation_angle 0 
-dconf write /apps/jolla-startupwizard/reached_tutorial true
-
+dconf write /desktop/jolla/components/screen_rotation_angle 0
+dconf write "/apps/jolla-startupwizard/reached_tutorial" true
 EOF
 chmod +x /usr/sbin/screen_rotation_angle-N9
 chown 100000:100000 /usr/sbin/screen_rotation_angle-N9
