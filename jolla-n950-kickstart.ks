@@ -361,11 +361,27 @@ echo 'arch = armv7hl' >> /etc/zypp/zypp.conf
 rm -f /lib/systemd/system/sys-kernel-debug.mount
 rm -f /lib/systemd/system/sysinit.target.wants/sys-kernel-debug.mount
 
+# It seems to be problematic on N9
+rm -f /etc/usb-moded/dyn-modes/developer_mode-android.ini
+
+# Fix audio
+echo 'CONFIG="-n --file=/etc/pulse/arm_nokia_rm_696_board.pa"' > /etc/sysconfig/pulseaudio
+
+# Increase boot timeout: lipstick startup s slow on N9 for some reason
+sed -i "s|NORMAL_TIMEOUT=45|NORMAL_TIMEOUT=90|" /usr/lib/startup/wait-session-to-start
+
+# Fix ofono options: don't disable isimodem plugin (should not be needed with
+# updated nemo-configs-n950-n9 package)
+echo 'OFONO_ARGS="--noplugin=he910,dun_gw_bluez5,hfp_bluez5,hfp_ag_bluez5,cdma_provision,bluez5,u8500,qmimodem,gobi,cdmamodem,isiusb,nwmodem,ztemodem,iceramodem,huaweimodem,calypsomodem,swmodem,mbmmodem,hsomodem,ifxmodem,stemodem,dunmodem,hfpmodem,speedupmodem,phonesim,rilmodel,ril"' > /var/lib/environment/ofono/plugins.conf
+
 %end
 
 %post --nochroot
 if [ -n "$IMG_NAME" ]; then
     echo "BUILD: $IMG_NAME" >> $INSTALL_ROOT/etc/meego-release
 fi
+
+# Does it find ofono-1.12.tar.gz in the current directory?
+#tar xf ofono-1.12.tar.gz -C "$INSTALL_ROOT"
 
 %end
