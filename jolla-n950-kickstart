@@ -22,13 +22,14 @@ repo --name=nemo-adaptation-n950-n9 --baseurl=http://repo.merproject.org/obs/nem
 repo --name=nemo-adaptation-n9xx-common --baseurl=http://repo.merproject.org/obs/nemo:/devel:/hw:/ti:/omap3:/n9xx-common/latest_armv7hl/ 
 
 
-#1.0.2.5
-repo --name=jolla --baseurl=http://releases.jolla.com/releases/1.0.2.5/jolla/armv7hl/
-repo --name=hotfixes --baseurl=http://releases.jolla.com/releases/1.0.2.5/hotfixes/armv7hl/
+#1.0.3.7
+repo --name=jolla --baseurl=http://releases.jolla.com/releases/1.0.3.7/jolla/armv7hl/
+repo --name=hotfixes --baseurl=http://releases.jolla.com/releases/1.0.3.7/hotfixes/armv7hl/
 repo --name=apps --baseurl=http://releases.jolla.com/jolla-apps/latest-release/armv7hl/
 repo --name=limited-nemo-mw --baseurl=http://repo.merproject.org/obs/home:/vgrade:/branches:/nemo:/devel:/mw/latest_armv7hl/
 repo --name=jalnmwr --baseurl=http://repo.merproject.org/obs/home:/SourenAraya:/branches:/nemo:/devel:/mw/latest_armv7hl/
 repo --name=bme-patched-service-unit --baseurl=http://repo.merproject.org/obs/home:/SourenAraya:/branches:/nemo:/devel:/hw:/ti:/omap3:/n950-n9/latest_armv7hl/ --includepkgs=bme-rm-680-bin
+repo --name=mer --baseurl=http://repo.merproject.org/obs/home:/vgrade:/branches:/mer-core:/devel/latest_armv7hl/
 
 %packages
 
@@ -163,7 +164,7 @@ sailfish-office
         nokia-n950-configs
         nemo-configs-n950-n9
         omap-update-display
-        pulseaudio-settings-n950
+        #pulseaudio-settings-n950
         systemd-console-ttyS0
         ti-omap3-sgx-libEGL
         ti-omap3-sgx-libGLESv1
@@ -183,8 +184,6 @@ nemo-configs-n950-n9-wayland
 qt5-qtwayland-wayland_egl
 #=================================================
 
--sailfish-maps
--ohm-config
 jolla-common-configurations
 libsailfishkeyprovider-data-jolla
 
